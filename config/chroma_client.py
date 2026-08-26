@@ -1,11 +1,13 @@
 import os
 
 import chromadb
+from chromadb.api.models.Collection import Collection
 from dotenv import load_dotenv
 
 load_dotenv()
 
 REQUIRED_ENV_VARS = ("CHROMA_API_KEY", "CHROMA_TENANT", "CHROMA_DATABASE")
+COLLECTION_NAME = "resume_content"
 
 
 def get_chroma_client() -> chromadb.CloudClient:
@@ -21,3 +23,7 @@ def get_chroma_client() -> chromadb.CloudClient:
         tenant=os.environ["CHROMA_TENANT"],
         database=os.environ["CHROMA_DATABASE"],
     )
+
+
+def get_collection() -> Collection:
+    return get_chroma_client().get_or_create_collection(COLLECTION_NAME)
