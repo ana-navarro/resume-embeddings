@@ -1,0 +1,6 @@
+fastapi
+uvicorn[standard]
+pydantic
+chromadb
+python-dotenv
+pytest
